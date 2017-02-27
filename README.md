@@ -1,4 +1,4 @@
-# tikape-runko
+# tikape-ryhmätyö-keskustelupalsta
 
-Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
+Tietokantojen perusteet -kurssilla tehtävä keskustelualue-ryhmätyö.
 
