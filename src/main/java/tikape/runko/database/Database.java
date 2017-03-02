@@ -39,11 +39,14 @@ public class Database {
         ArrayList<String> lista = new ArrayList<>();
 
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-        lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
-        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Platon');");
-        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Aristoteles');");
-        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Homeros');");
-
+        //Luodaan Tietokannat
+        lista.add(" CREATE TABLE Viestiketju\n" + "(\n" + "id integer PRIMARY KEY,\n" + "otsikko varchar(200) NOT NULL,\n" + "aika timestamp NOT NULL,\n" + "nimimerkki varchar(50) NOT NULL,\n" + "aihealue_id integer NOT NULL,\n" + "FOREIGN KEY(aihealue_id) REFERENCES Aihealue(id)\n" + ");");
+        lista.add(" CREATE TABLE Aihealue\n" + "(\n" + "id integer PRIMARY KEY,\n" + "nimi varchar(50) NOT NULL,\n" + "sisalto varchar(999)  \n" + ");");
+        lista.add("CREATE TABLE Viesti\n" + "(\n" + "id integer PRIMARY KEY,\n" + "sisalto varchar(999),\n" + "aika timestamp NOT NULL,\n" + "nimimerkki varchar(50) NOT NULL,\n" + "viestiketju_id integer NOT NULL,\n" + "FOREIGN KEY(viestiketju_id) REFERENCES Viestiketju(id)\n" + ");");
+        //Lisätään arvoja
+        lista.add("INSERT INTO Aihealue  VALUES ('1', 'AIHE 1','SISAÄLTÖÄÄÄÄ');");
+        lista.add("INSERT INTO Aihealue  VALUES ('2', 'AIHE 2','TOISTA SISAÄLTÖÄ');");
+        lista.add("INSERT INTO Viesti(id,nimi,otsikko)  VALUES ('1', 'sisältöä','SISAÄLTÖÄÄÄÄ');");
         return lista;
     }
 }

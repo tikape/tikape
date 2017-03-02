@@ -1,0 +1,30 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Turpo-Messenger Services</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1>Messenger</h1>
+        <h2>Aiheet</h2>
+
+        <p><span th:text="${viesti}"></span></p>
+        
+        
+<form action="/?id" method="GET">
+    <input type="text" name="id"/>
+    <input type="submit"/>
+</form>
+
+        
+<ul>
+    <li th:each="alkio : ${lista}">
+        <a href="/viestiketjut">
+       <span th:text="${alkio}">Tyhjä</span>
+       </a>
+    </li>
+</ul>        
+    </body>
+</html>
