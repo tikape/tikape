@@ -22,12 +22,14 @@ public class Main {
         //Luodaan tietokannat
         DbAihealue db = new DbAihealue("jdbc:sqlite:aihealueet.db");
         db.init();
-        DbViestiketju db2 = new DbViestiketju("jdbc:sqlite:viestiketju.db");
-        db2.init();
+//        DbViestiketju db2 = new DbViestiketju("jdbc:sqlite:viestiketju.db");
+//        db2.init();
+
+
         
         //Luodaan Data Access objectit
         AiheDao aiheDao = new AiheDao(db);
-        ViestiketjuDao viestiketjuDao = new ViestiketjuDao(db2);
+        ViestiketjuDao viestiketjuDao = new ViestiketjuDao(db);
         
  // lisäys viestiketjut db      db2.add("otsikko", "nimimerkki", 1);
         //Aiheiden listaus
@@ -93,7 +95,7 @@ public class Main {
             String nimimerkki = req.queryParams("nimimerkki");
             String otsikko = req.queryParams("otsikko");
             int i=Integer.parseInt(req.queryParams("aihe"));
-            db2.add(otsikko, nimimerkki, i);
+            db.addViestiketju(otsikko, nimimerkki, i);
             res.redirect("/");
             String id=Integer.toString(i);
             return id;

@@ -54,6 +54,23 @@ public class DbAihealue {
             System.out.println("Error >> " + t.getMessage());
         }
     }
+    
+    public void addViestiketju(String otsikko, String nimimerkki, int aihe_id) {
+        //Lisätään timestamp
+        java.util.Date date= new java.util.Date();
+        long time = date.getTime();
+        Timestamp a= new Timestamp(time);
+        String lause=("INSERT INTO Viestiketju (otsikko,aika,nimimerkki,aihealue_id) VALUES ( '" + otsikko + "','"+a + "' ,'" + nimimerkki + "','"+ aihe_id +"');") ;
+        // "try with resources" sulkee resurssin automaattisesti lopuksi
+        try (Connection conn = getConnection()) {
+            Statement st = conn.createStatement();
+            st.executeUpdate(lause);
+
+        } catch (Throwable t) {
+            // jos tietokantataulu on jo olemassa, ei komentoja suoriteta
+            System.out.println("Error >> " + t.getMessage());
+        }
+    }    
 
 
     
