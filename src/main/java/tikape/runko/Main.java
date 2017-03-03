@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 public class Main {
 
@@ -33,16 +34,8 @@ public class Main {
          get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             //Luodaan aihelista
-            ArrayList<Aihe> lista = new ArrayList<>();
-            int i=1;
-            //tÄYTETÄÄN LISTA
-            while(true){
-                if(aiheDao.findOne(i)==null){
-                    break;
-            }
-            lista.add(aiheDao.findOne(i)); 
-            i++;            
-            };
+            List<Aihe> lista = aiheDao.findAll();
+
             //Tehdään Hashmap
             map.put("viesti","Aiheet");
             map.put("lista", lista);
