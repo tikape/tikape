@@ -6,9 +6,9 @@ import tikape.runko.domain.Viesti;
 
 public class ViestiDao {
 
-    private DbAihealue database;
+    private Database database;
 
-    public ViestiDao(DbAihealue database) {
+    public ViestiDao(Database database) {
         this.database = database;
     }
 

@@ -16,9 +16,9 @@ import tikape.runko.domain.Aihe;
  * @author Phoenix
  */
 public class AiheDao implements Dao<Aihe ,Integer> {
-    private DbAihealue database;
+    private Database database;
 
-    public AiheDao(DbAihealue database) {
+    public AiheDao(Database database) {
         this.database = database;
     }
 
@@ -38,13 +38,13 @@ public class AiheDao implements Dao<Aihe ,Integer> {
         String nimi = rs.getString("nimi");
         String content = rs.getString("sisalto");
 
-        Aihe o = new Aihe(id, nimi, content);
+        Aihe aihe = new Aihe(id, nimi, content);
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return o;
+        return aihe;
     }
     
     public Aihe findOneWith(String key) throws SQLException {
@@ -62,13 +62,13 @@ public class AiheDao implements Dao<Aihe ,Integer> {
         String nimi = rs.getString("nimi");
         String content = rs.getString("sisalto");
 
-        Aihe o = new Aihe(id, nimi, content);
+        Aihe aihe = new Aihe(id, nimi, content);
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return o;
+        return aihe;
     }
     @Override
     public List<Aihe> findAll() throws SQLException {

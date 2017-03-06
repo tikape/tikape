@@ -18,9 +18,9 @@ import java.sql.*;
  * @author Phoenix
  */
 public class ViestiketjuDao implements Dao<Viestiketju ,Integer> {
-    private DbAihealue database;
+    private Database database;
 
-    public ViestiketjuDao(DbAihealue database) {
+    public ViestiketjuDao(Database database) {
         this.database = database;
     }
 

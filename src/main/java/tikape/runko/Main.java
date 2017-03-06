@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //Luodaan tietokannat
-        DbAihealue db = new DbAihealue("jdbc:sqlite:aihealueet.db");
+        Database db = new Database("jdbc:sqlite:aihealueet.db");
         db.init();
     
         //Luodaan Data Access objectit
@@ -41,7 +41,7 @@ public class Main {
         //aiheen lisäys
         post("/lisays:id", (req, res) -> {
             String id = req.queryParams("id");
-            //Lisäys: INSERT INTO Aihealue (nimi,sisalto) VALUES ( '" + x + "', '/viestiketjut?id=" + x + "');")  DbAihealue
+            //Lisäys: INSERT INTO Aihealue (nimi,sisalto) VALUES ( '" + x + "', '/viestiketjut?id=" + x + "');")  Database
             db.add(id);
             //Palaa takaisin
             res.redirect("/");
