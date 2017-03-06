@@ -4,12 +4,8 @@ import java.util.HashMap;
 import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-import tikape.runko.database.ViestiketjuDao;
-import tikape.runko.domain.Viestiketju;
-import tikape.runko.database.AiheDao;
-import tikape.runko.database.DbAihealue;
-import tikape.runko.domain.Aihe;
-import tikape.runko.database.DbViestiketju;
+import tikape.runko.database.*;
+import tikape.runko.domain.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,30 +18,23 @@ public class Main {
         //Luodaan tietokannat
         DbAihealue db = new DbAihealue("jdbc:sqlite:aihealueet.db");
         db.init();
-//        DbViestiketju db2 = new DbViestiketju("jdbc:sqlite:viestiketju.db");
-//        db2.init();
-
-
-        
+    
         //Luodaan Data Access objectit
         AiheDao aiheDao = new AiheDao(db);
         ViestiketjuDao viestiketjuDao = new ViestiketjuDao(db);
+        ViestiDao viestiDao = new ViestiDao(db);
         
- // lisäys viestiketjut db      db2.add("otsikko", "nimimerkki", 1);
         //Aiheiden listaus
          get("/", (req, res) -> {
             HashMap map = new HashMap<>();
+            
             //Luodaan aihelista
             List<Aihe> lista = aiheDao.findAll();
 
             //Tehdään Hashmap
             map.put("viesti","Aiheet");
             map.put("lista", lista);
-            
-            
 
-
-            
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());             
         
@@ -58,16 +47,13 @@ public class Main {
             res.redirect("/");
             return "";
         });        
-         
-         
-         
-         
+      
         //Viestiketjut
         get("/viestiketjut", (req, res) -> {
             HashMap map = new HashMap<>();
             //Otetaan aiheen nimi
-            String id= req.queryParams("id");
-            //UUsi aihe johon haetaan arvot
+            String id = req.queryParams("id");
+            //Uusi aihe johon haetaan arvot
             Aihe whatever = (aiheDao.findOneWith(id));
             //Luodaan otsikko(viesti) aiheesta
             map.put("viesti",whatever.getNimi() );

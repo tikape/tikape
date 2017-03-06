@@ -34,7 +34,7 @@ public class AiheDao implements Dao<Aihe ,Integer> {
             return null;
         }
 
-       Integer id = rs.getInt("id");
+        Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
         String content = rs.getString("sisalto");
 
@@ -58,7 +58,7 @@ public class AiheDao implements Dao<Aihe ,Integer> {
             return null;
         }
 
-       Integer id = rs.getInt("id");
+        Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
         String content = rs.getString("sisalto");
 
