@@ -15,7 +15,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        //Luodaan tietokannat
+        //Luodaan tietokanta
         Database db = new Database("jdbc:sqlite:aihealueet.db");
         db.init();
     
@@ -41,9 +41,7 @@ public class Main {
         //aiheen lisäys
         post("/lisays:id", (req, res) -> {
             String id = req.queryParams("id");
-            //Lisäys: INSERT INTO Aihealue (nimi,sisalto) VALUES ( '" + x + "', '/viestiketjut?id=" + x + "');")  Database
             db.add(id);
-            //Palaa takaisin
             res.redirect("/");
             return "";
         });        
@@ -73,7 +71,8 @@ public class Main {
             //Suodatin pitää saada
             map.put("lista", viestilista);
             return new ModelAndView(map, "viestiketjut");
-         }, new ThymeleafTemplateEngine());  
+         }, new ThymeleafTemplateEngine()); 
+        
         //Lisätään uusi viestiketju
         post("/viestiketjut/lisays", (req, res) -> {
             String nimimerkki = req.queryParams("nimimerkki");
@@ -84,6 +83,19 @@ public class Main {
             res.redirect("/viestiketjut?id=" + id);
             return id;
         });
+        
+        get("/viesti", (req, res) -> {
+            HashMap map = new HashMap<>();
+            
+            String viestiketjuId = req.queryParams("id");
+            
+            List<Viesti> viestit = viestiDao.kaikki(Integer.parseInt(viestiketjuId));
+            
+            map.put("viestit", viestit);
+            
+            return new ModelAndView(map, "viesti");
+        }, new ThymeleafTemplateEngine());
+        
         /*
         post("/lisays:id", (req, res) -> {
             HashMap map = new HashMap<>();

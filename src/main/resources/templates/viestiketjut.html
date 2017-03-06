@@ -18,7 +18,7 @@
     <li th:each="alkio : ${lista}">
 
 
-        <a href="/viestit"><span th:text="${alkio.otsikko}">hello world!</span></a>
+        <a th:href="'/viesti?id=' + ${alkio.id}"><span th:text="${alkio.otsikko}">hello world!</span></a>
 
         <span th:text="${alkio.nimimerkki}">ss</span>
 

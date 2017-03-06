@@ -57,19 +57,24 @@ public class ViestiDao {
 
     public List<Viesti> kaikki(Integer id) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti Where viestiKetju_id = " + id + " ORDER BY aika ASC");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE viestiketju_id = " + id + " ORDER BY aika ASC");
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
+        
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
 
         while (rs.next()) {
             int idV = rs.getInt("id");
-            String viesti = rs.getString("viestiNimi");
-            String kayttaja = rs.getString("kayttaja");
+            String sisalto = rs.getString("sisalto");
+            String nimimerkki = rs.getString("nimimerkki");
             Timestamp aika = rs.getTimestamp("aika");
             int viestiketju_id = rs.getInt("viestiketju_id");
 
-            viestit.add(new Viesti(idV, viesti, kayttaja, aika, viestiketju_id));
+            viestit.add(new Viesti(idV, sisalto, nimimerkki, aika, viestiketju_id));
         }
 
         rs.close();
