@@ -25,7 +25,7 @@ public class Main {
         ViestiDao viestiDao = new ViestiDao(db);
         
         //Aiheiden listaus
-         get("/", (req, res) -> {
+        get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             
             //Luodaan aihelista
@@ -51,29 +51,27 @@ public class Main {
         //Viestiketjut
         get("/viestiketjut", (req, res) -> {
             HashMap map = new HashMap<>();
-            //Otetaan aiheen nimi
+            //Otetaan aiheen id
             String id = req.queryParams("id");
             //Uusi aihe johon haetaan arvot
-            Aihe whatever = (aiheDao.findOneWith(id));
+            Aihe aihe = aiheDao.findOne(Integer.parseInt(id));
             //Luodaan otsikko(viesti) aiheesta
-            map.put("viesti",whatever.getNimi() );
+            map.put("viesti", aihe.getNimi());
             //Luodaan lista viestiketjuista
             ArrayList<Viestiketju> viestilista = new ArrayList<>();
-            int i=1;
-            //tÄYTETÄÄN LISTA
+            int i = 1;
             while(true){
-                if(viestiketjuDao.findOne(i)==null){
+                if(viestiketjuDao.findOne(i) == null){
                     break;
             }
-                if(viestiketjuDao.findOne(i).getaId()==whatever.getId()){
+                if(viestiketjuDao.findOne(i).getaId() == aihe.getId()){
                     viestilista.add(viestiketjuDao.findOne(i));
-                }
-             
+                }            
             i++;            
             };
-            map.put("aihe",whatever);
+            map.put("aihe", aihe);
             //Suodatin pitää saada
-            map.put("lista",viestilista);
+            map.put("lista", viestilista);
             return new ModelAndView(map, "viestiketjut");
          }, new ThymeleafTemplateEngine());  
         //Lisätään uusi viestiketju
@@ -82,8 +80,8 @@ public class Main {
             String otsikko = req.queryParams("otsikko");
             int i=Integer.parseInt(req.queryParams("aihe"));
             db.addViestiketju(otsikko, nimimerkki, i);
-            res.redirect("/");
             String id=Integer.toString(i);
+            res.redirect("/viestiketjut?id=" + id);
             return id;
         });
         /*

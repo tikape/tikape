@@ -13,13 +13,11 @@ package tikape.runko.domain;
 public class Aihe {
     private Integer id;
     private String nimi;
-    private String content;
 
 
-    public Aihe(Integer id, String nimi, String sis) {
+    public Aihe(Integer id, String nimi) {
         this.id = id;
         this.nimi = nimi;
-        this.content = sis;
 
     }
 
@@ -38,11 +36,5 @@ public class Aihe {
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String nim) {
-        this.content = nim;
-    }        
+       
 }

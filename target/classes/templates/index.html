@@ -24,7 +24,7 @@
 <ul>
     <li th:each="alkio : ${lista}">
 
-        <a th:href="${alkio.content}" >
+        <a th:href="'/viestiketjut?id=' + ${alkio.id}" >
        <span th:text="${alkio.nimi}">Tyhjä</span>
        </a>
     </li>
