@@ -43,7 +43,7 @@ public class ViestiDao {
         int id = rs.getInt("id");
         String viesti = rs.getString("viestiNimi");
         String kayttaja = rs.getString("kayttaja");
-        Timestamp aika = new rs.getAika("aika");
+        Timestamp aika = rs.getTimestamp("aika");
         int viestiketju_id = rs.getInt("viestiketju_id");
 
         Viesti a = new Viesti(id, viesti, kayttaja, aika, viestiketju_id);
@@ -66,7 +66,7 @@ public class ViestiDao {
             int idV = rs.getInt("id");
             String viesti = rs.getString("viestiNimi");
             String kayttaja = rs.getString("kayttaja");
-            Timestamp aika = rs.getAika("aika");
+            Timestamp aika = rs.getTimestamp("aika");
             int viestiketju_id = rs.getInt("viestiketju_id");
 
             viestit.add(new Viesti(idV, viesti, kayttaja, aika, viestiketju_id));

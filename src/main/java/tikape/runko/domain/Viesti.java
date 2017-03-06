@@ -27,10 +27,6 @@ public class Viesti {
         this.id = id;
     }
 
-    public String getNimi() {
-        return viesti;
-    }
-
     public String getViesti() {
         return viesti;
     }
@@ -42,7 +38,10 @@ public class Viesti {
     public Timestamp getAika() {
         return aika;
     }
-    
-    
+
+    public Integer getViestiketju_id() {
+        return viestiketju_id;
+    }
+  
 }
     
