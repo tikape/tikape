@@ -72,9 +72,31 @@ public class Database {
         }
     }    
 
+    public void addViesti(String sisalto, String nimimerkki, String viestiketju_id) {
+        //Lisätään timestamp
+        java.util.Date date = new java.util.Date();
+        long time = date.getTime();
+        Timestamp a = new Timestamp(time);
+        
+        // "try with resources" sulkee resurssin automaattisesti lopuksi
+        try (Connection conn = getConnection()) {
+            PreparedStatement st = conn.prepareStatement("INSERT INTO Viesti (sisalto, aika, nimimerkki, viestiketju_id) VALUES (?, ?, ?, ?);");
+            
+            st.setString(1, sisalto);
+            st.setTimestamp(2, a);
+            st.setString(3, nimimerkki);
+            st.setString(4, viestiketju_id);
+ 
+            
+            System.out.println(st.toString());
+            
+            st.execute();
 
-    
-    
+        } catch (Throwable t) {
+            // jos tietokantataulu on jo olemassa, ei komentoja suoriteta
+            System.out.println("Error >> " + t.getMessage());
+        }
+    }
     
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();

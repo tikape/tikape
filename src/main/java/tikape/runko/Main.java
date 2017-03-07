@@ -6,10 +6,6 @@ import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.*;
 import tikape.runko.domain.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.List;
 
 public class Main {
@@ -84,7 +80,7 @@ public class Main {
             return id;
         });
         
-        get("/viesti", (req, res) -> {
+        get("/viestit", (req, res) -> {
             HashMap map = new HashMap<>();
             
             String viestiketjuId = req.queryParams("id");
@@ -93,8 +89,20 @@ public class Main {
             
             map.put("viestit", viestit);
             
-            return new ModelAndView(map, "viesti");
+            return new ModelAndView(map, "viestit");
         }, new ThymeleafTemplateEngine());
+        
+        post("/viestit", (req, res) -> {
+            String sisalto = req.queryParams("viesti");
+            String nimimerkki = req.queryParams("kayttaja");
+            String viestiketju_id = req.queryParams("id");
+            
+            db.addViesti(sisalto, nimimerkki, viestiketju_id);
+            
+            res.redirect("/viestit?id=" + viestiketju_id);
+            
+            return sisalto;
+        });
         
         /*
         post("/lisays:id", (req, res) -> {

@@ -61,11 +61,6 @@ public class ViestiDao {
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
-        
-        boolean hasOne = rs.next();
-        if (!hasOne) {
-            return null;
-        }
 
         while (rs.next()) {
             int idV = rs.getInt("id");
