@@ -11,24 +11,19 @@
         <h2>Viestiketjut</h2>
 
         <p><span th:text="${viesti}"></span></p>
-
-
+     
+        <ul>
+            <li th:each="alkio : ${lista}">
+                <a th:href="'/viestit?id=' + ${alkio.id}"><span th:text="${alkio.otsikko}">hello world!</span></a>
+                <span th:text="${alkio.nimimerkki}">ss</span>
+            </li>
+        </ul>
         
-<ul>
-    <li th:each="alkio : ${lista}">
-
-
-        <a th:href="'/viestit?id=' + ${alkio.id}"><span th:text="${alkio.otsikko}">hello world!</span></a>
-
-        <span th:text="${alkio.nimimerkki}">ss</span>
-
-    </li>
-</ul>
         <form action="/viestiketjut/lisays" method="POST">
             <span>Otsikko:</span>
             <input type="text" name="otsikko"/><p></p>
-            <span>Viesti:</span>
-            <input type="text" name="viesti" size="100"/><p></p>
+<!--            <span>Viesti:</span>
+            <input type="text" name="viesti" size="100"/><p></p>-->
             <span>nimimerkki:</span>
             <input type="text" name="nimimerkki" maxlength="50"/>    
             <input name="aihe" type="hidden" th:value="${aihe.id}"/>

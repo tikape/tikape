@@ -36,7 +36,6 @@ public class Database {
     }
     //Tietokantaan lisäys
     public void add(String x) {
-//        List<String> lauseet = sqliteLauseet();
 
         // "try with resources" sulkee resurssin automaattisesti lopuksi
         try (Connection conn = getConnection()) {
@@ -101,20 +100,8 @@ public class Database {
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();
 
-        // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-        //Luodaan Tietokannat
-
         lista.add(" CREATE TABLE Aihealue (id integer PRIMARY KEY AUTOINCREMENT, nimi varchar(50) NOT NULL);");
-         //Lisätään arvoja
-         
-         
-         /*        lista.add("INSERT INTO Aihealue (nimi,sisalto) VALUES ( 'AIHE 1','SISAÄLTÖÄÄÄÄ');");
-        lista.add("INSERT INTO Aihealue (nimi,sisalto) VALUES ( 'AIHE 2','TOISTA SISAÄLTÖÄ');");
-        lista.add("INSERT INTO Aihealue (nimi,sisalto) VALUES ( 'AIHE 3','SISAÄLTÖÄÄÄÄ');");
-        lista.add("INSERT INTO Aihealue (nimi,sisalto) VALUES ( 'AIHE 4','TOISTA SISAÄLTÖÄ');");
-        lista.add("INSERT INTO Aihealue (nimi,sisalto) VALUES ( 'AIHE 5','SISAÄLTÖÄÄÄÄ');");
-        lista.add("INSERT INTO Aihealue (nimi,sisalto) VALUES ( 'AIHE 6','TOISTA SISAÄLTÖÄ');");         
-*/
-    return lista;
+        
+        return lista;
     }
 }

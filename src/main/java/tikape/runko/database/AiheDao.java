@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tikape.runko.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,10 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Aihe;
-/**
- *
- * @author Phoenix
- */
+
 public class AiheDao implements Dao<Aihe ,Integer> {
     private Database database;
 
@@ -68,6 +61,7 @@ public class AiheDao implements Dao<Aihe ,Integer> {
 
         return aihe;
     }
+    
     @Override
     public List<Aihe> findAll() throws SQLException {
 

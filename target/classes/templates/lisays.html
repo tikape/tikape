@@ -13,18 +13,18 @@
         <p><span th:text="${viesti}"></span></p>
         
         
-<form action="/?id" method="GET">
-    <input type="text" name="id"/>
-    <input type="submit"/>
-</form>
+        <form action="/?id" method="GET">
+            <input type="text" name="id"/>
+            <input type="submit"/>
+        </form>
 
-        
-<ul>
-    <li th:each="alkio : ${lista}">
-        <a href="/viestiketjut">
-       <span th:text="${alkio}">Tyhjä</span>
-       </a>
-    </li>
-</ul>        
+
+        <ul>
+            <li th:each="alkio : ${lista}">
+               <a href="/viestiketjut">
+               <span th:text="${alkio}">Tyhjä</span>
+               </a>
+            </li>
+        </ul>        
     </body>
 </html>

@@ -76,6 +76,7 @@ public class ViestiketjuDao implements Dao<Viestiketju ,Integer> {
 
         return o;
     }
+    
     @Override
     public List<Viestiketju> findAll() throws SQLException {
 
@@ -91,9 +92,7 @@ public class ViestiketjuDao implements Dao<Viestiketju ,Integer> {
             String nimimerkki = rs.getString("nimimerkki");
             Integer aihealue_id = rs.getInt("aihealue_id");
 
-        aiheet.add( new Viestiketju(id, otsikko, aika, nimimerkki,aihealue_id));           
-
-
+            aiheet.add( new Viestiketju(id, otsikko, aika, nimimerkki,aihealue_id));           
         }
 
         rs.close();
